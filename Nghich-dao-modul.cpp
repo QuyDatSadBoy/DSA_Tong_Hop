@@ -54,7 +54,7 @@ int main()
         cout << "nghich dao modul la :" << x << endl;
     }
 
-    // cách 2 là : nếu p là số nguyên tố và a không chia hết cho p thì nghịch đảo modul của a và b là a^(p-2)%p 
+    // cách 2 là : nếu p là số nguyên tố và a không chia hết cho p thì nghịch đảo modul của a và b là a^(p-2)%p nhé
     // vd a=2,p=11;
     cout << pow_mod(2, 11 - 2, 11) << endl;
 }
