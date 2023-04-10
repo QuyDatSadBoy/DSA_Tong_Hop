@@ -1,0 +1,91 @@
+#include <bits/stdc++.h>
+#define ll long long
+const ll mod = (ll)1e9 + 7;
+#define endl "\n"
+#define all(v) v.begin(), v.end()
+#define ms(a) memset(a, 0, sizeof(a))
+#define faster()                  \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+using namespace std;
+
+vector<ll> adj[100001];
+ll n, m, visited[1000001] = {0}, disc[1000001], low[1000001], timer = 0;
+
+// Dinh tru trong 2 th sau:
+// 1 : Goc cua do thi >=2 con
+// low[v] >= disc[u] u se la dinh cu
+// Meaning : v khong co duong de di lai to tien cua u ma khong di qua u
+
+bool ap[1000001];
+void init_vh()
+{
+    cin >> n >> m;
+    for (ll i = 1; i <= m; i++)
+    {
+        ll x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    for (ll i = 1; i <= n; i++)
+    {
+        sort(all(adj[i]));
+    }
+}
+
+void dfs(ll u, ll par)
+{
+    low[u] = disc[u] = ++timer;
+    int dem = 0; // dem xem dinh u co bn con
+    for (auto v : adj[u])
+    {
+        if (v == par)
+        {
+            continue;
+        }
+        if (disc[v] == 0)
+        {
+            ++dem;
+            dfs(v, u);
+            low[u] = min(low[u], low[v]);
+            if (low[v] >= disc[u] && par != -1)
+            {
+                ap[u] = true;
+            }
+        }
+        else
+        {
+            low[u] = min(low[u], disc[v]);
+        }
+    }
+    if (par == -1 && dem > 1)
+        ap[u] = true;
+}
+
+void solve()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        if (disc[i] == 0)
+        {
+            dfs(i, -1);
+        }
+    }
+    ll cnt = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (ap[i])
+        {
+            cnt++;
+        }
+    }
+    cout << cnt << endl;
+}
+int main()
+{
+    faster();
+    init_vh();
+    solve();
+}

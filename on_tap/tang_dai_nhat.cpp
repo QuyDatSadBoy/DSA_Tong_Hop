@@ -13,4 +13,14 @@ using namespace std;
 int main()
 {
     faster();
+    ll n;
+    cin >> n;
+    ll a[n];
+    for (ll i = 0; i < n; i++)
+        cin >> a[i];
+    vector<ll> res;
+    res.push_back(a[0]);
+    for (ll i = 1; i < n; i++)
+    {
+    }
 }
