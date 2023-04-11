@@ -63,7 +63,7 @@ void solve()
 {
     for (ll i = 1; i <= n; i++)
     {
-        if (!visited[i])
+        if (!color[i])
         {
             if (!dfs(i))
             {
