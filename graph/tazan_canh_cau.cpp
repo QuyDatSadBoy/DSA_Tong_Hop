@@ -13,10 +13,7 @@ using namespace std;
 vector<ll> adj[100001];
 ll n, m, visited[1000001] = {0}, disc[1000001], low[1000001], timer = 0;
 vector<pair<ll, ll>> edge;
-// Dinh tru trong 2 th sau:
-// 1 : Goc cua do thi >=2 con
-// low[v] >= disc[u] u se la dinh cu
-// Meaning : v khong co duong de di lai to tien cua u ma khong di qua u
+
 
 bool ap[1000001];
 void init_vh()

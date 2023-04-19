@@ -68,13 +68,14 @@ void bfs(ll u)
             {
                 visited[y] = true;
                 q.push(y);
+                parent[y] = x;
             }
         }
     }
 }
 void solve()
 {
-    dfs(s);
+    bfs(s);
     cout << endl;
     if (visited[t])
     {

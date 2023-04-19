@@ -1,0 +1,1 @@
+{"name":"Local: b42_lat_duong","url":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\graph\\b42_lat_duong.cpp","tests":[{"id":1681662488628,"input":"5 3\n1 2\n1 3\n4 5","output":"4 2\n3 3\n2 3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\graph\\b42_lat_duong.cpp","group":"local","local":true}

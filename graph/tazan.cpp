@@ -1,22 +1,13 @@
 #include <bits/stdc++.h>
 #define ll long long
-const ll mod = (ll)1e9 + 7;
 #define endl "\n"
 #define all(v) v.begin(), v.end()
-#define ms(a) memset(a, 0, sizeof(a))
-#define faster()                  \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0);
+
 using namespace std;
 
 vector<ll> adj[100001];
 ll n, m, visited[1000001] = {0}, disc[1000001], low[1000001], timer = 0;
-
-// Dinh tru trong 2 th sau:
-// 1 : Goc cua do thi >=2 con
-// low[v] >= disc[u] u se la dinh cu
-// Meaning : v khong co duong de di lai to tien cua u ma khong di qua u
+vector<pair<ll, ll>> edge;
 
 bool ap[1000001];
 void init_vh()
@@ -64,6 +55,31 @@ void dfs(ll u, ll par)
         ap[u] = true;
 }
 
+void dfs1(ll u, ll par)
+{
+    low[u] = disc[u] = ++timer;
+    for (auto v : adj[u])
+    {
+        if (v == par)
+        {
+            continue;
+        }
+        if (disc[v] == 0)
+        {
+            dfs1(v, u);
+            low[u] = min(low[u], low[v]);
+            if (low[v] > disc[u])
+            {
+                edge.push_back({u, v});
+            }
+        }
+        else
+        {
+            low[u] = min(low[u], disc[v]);
+        }
+    }
+}
+
 void solve()
 {
     for (int i = 1; i <= n; i++)
@@ -81,11 +97,21 @@ void solve()
             cnt++;
         }
     }
-    cout << cnt << endl;
+    memset(disc, 0, sizeof(disc));
+    memset(low, 0, sizeof(low));
+    timer = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        if (disc[i] == 0)
+        {
+            dfs1(i, -1);
+        }
+    }
+    cout << cnt << " " << edge.size() << endl;
 }
+
 int main()
 {
-    faster();
     init_vh();
     solve();
 }

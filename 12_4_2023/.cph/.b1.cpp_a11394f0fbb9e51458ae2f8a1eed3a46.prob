@@ -1,0 +1,1 @@
+{"name":"Local: b1","url":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\12_4_2023\\b1.cpp","tests":[{"id":1681469029545,"input":"2\n[()]{}{[()()]()}\n[(])","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\12_4_2023\\b1.cpp","group":"local","local":true}

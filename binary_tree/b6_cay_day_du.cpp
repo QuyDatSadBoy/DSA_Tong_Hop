@@ -44,16 +44,12 @@ void insertNode(node *&root, ll u, ll v, char c)
 }
 bool check(node *root)
 {
-    if (root->left == NULL && root->right == NULL)
-        return true;
+    if ((root->left != NULL && root->right == NULL) ||(root->left == NULL && root->right != NULL) )
+        return false;
     else
     {
-        if (root->left != NULL && root->right != NULL)
-        {
-            return check(root->left) && check(root->right);
-        }
-        else
-            return false;
+        return (check(root->left) && check(root->right));
+        return true;
     }
 }
 int main()

@@ -1,0 +1,1 @@
+{"name":"Local: ngoac_vuong","url":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\12_4_2023\\ngoac_vuong.cpp","tests":[{"id":1681404478724,"input":"[()]\n[(])\n[[])(]]\n[[]()]","output":"2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\12_4_2023\\ngoac_vuong.cpp","group":"local","local":true}

@@ -1,0 +1,1 @@
+{"name":"Local: prim","url":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\toan_roi_rac\\prim.cpp","tests":[{"id":1681306154203,"input":"4\n0 3 0 2\n3 0 4 0\n0 4 0 5\n2 0 5 0","output":"14"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\toan_roi_rac\\prim.cpp","group":"local","local":true}
