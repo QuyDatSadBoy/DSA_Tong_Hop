@@ -9,18 +9,23 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll n, m, s;
+ll n, m, s, a[1001][1001];
 vector<pair<ll, ll>> adj[1000001];
 
 void nhap()
 {
-    cin >> n >> m >> s;
-    for (ll i = 0; i < m; i++)
+    cin >> n >> s;
+    for (ll i = 1; i <= n; i++)
     {
-        int x, y, w;
-        cin >> x >> y >> w;
-        adj[x].push_back({y, w});
-        adj[y].push_back({x, w});
+        for (ll j = 1; j <= n; j++)
+        {
+            cin >> a[i][j];
+            if (j > i && a[i][j] != 0 && a[i][j] != 1e9)
+            {
+                adj[i].push_back({j, a[i][j]});
+                adj[j].push_back({i, a[i][j]});
+            }
+        }
     }
 }
 void dijkstra(ll s)

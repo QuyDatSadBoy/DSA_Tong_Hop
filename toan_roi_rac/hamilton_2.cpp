@@ -38,7 +38,6 @@ int main()
                 ke[i].push_back(j);
         }
     }
-
     x[1] = v;
     visited[v] = 1;
     Hal(2);

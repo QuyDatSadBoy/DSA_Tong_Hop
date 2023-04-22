@@ -15,7 +15,6 @@ struct edge
     ll x, y, w;
 };
 ll n, m, a[1001][1001], visited[1000001];
-set<pair<ll, ll>> se;
 vector<edge> edges;
 void init()
 {
@@ -25,17 +24,12 @@ void init()
         for (ll j = 1; j <= n; j++)
         {
             cin >> a[i][j];
-            if (a[i][j] != 0)
-                se.insert({min(i, j), max(i, j)});
+            if (j > i && a[i][j] != 0)
+            {
+                edges.push_back({i, j, a[i][j]});
+            }
         }
     }
-    for (auto x : se)
-    {
-        ll s = x.first;
-        ll t = x.second;
-        edges.push_back({s, t, a[s][t]});
-    }
-    m = edges.size(); // so luong canh
 }
 bool cmp(edge a, edge b)
 {
@@ -55,17 +49,19 @@ void prim(ll s)
     visited[s] = 1;
     ll d = 0;
     sort(all(edges), cmp);
-    cout << "ds canh" << endl;
+    cout << "ds canh ban dau : " << endl;
     for (auto x : edges)
     {
         cout << x.x << " " << x.y << " " << x.w << endl;
     }
+    vector<edge> path;
     ll cnt = 0;
+    cout << "oke1" << endl;
     while (!check())
     {
         if (cnt == n - 1)
             break;
-        for (ll i = 0; i < m; i++)
+        for (ll i = 0; i < edges.size(); i++)
         {
             ll x = edges[i].x, y = edges[i].y, w = edges[i].w;
             if (visited[x] != visited[y])
@@ -73,6 +69,7 @@ void prim(ll s)
                 cnt++;
                 d += w;
                 visited[x] = visited[y] = 1;
+                path.push_back({x, y, w});
                 break;
             }
         }
@@ -81,10 +78,15 @@ void prim(ll s)
         cout << "Do thi khong lien thong" << endl;
     else
         cout << d << endl;
+    cout << "Ds canh duoc chon la:" << endl;
+    for (auto x : path)
+    {
+        cout << x.x << " " << x.y << " " << x.w << endl;
+    }
 }
 int main()
 {
-    faster();
+    // faster();
     init();
     prim(1);
 }
