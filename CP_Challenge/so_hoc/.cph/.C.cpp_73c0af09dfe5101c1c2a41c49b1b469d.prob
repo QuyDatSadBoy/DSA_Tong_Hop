@@ -1,0 +1,1 @@
+{"name":"Local: C","url":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\CP_Challenge\\so_hoc\\C.cpp","tests":[{"id":1682425892821,"input":"3\n4\n3 6 5 3\n2\n1 7\n5\n1 4 2 4 1","output":"4 \n0\n9"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\OneDrive\\Desktop\\Hard\\On_tap\\CP_Challenge\\so_hoc\\C.cpp","group":"local","local":true}

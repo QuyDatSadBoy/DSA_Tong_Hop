@@ -10,21 +10,16 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll cnt = 0;
-ll dfs(ll n)
-{
-    if (n == 4)
-        return 100;
-    if (n > 1)
-    {
-        dfs(n + 1);
-        if (n == 3)
-            return 1;
-    }
-    return 10;
-}
+
 int main()
 {
     faster();
-    cout << dfs(2) << endl;
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        ll n;
+        cin >> n;
+        cout << (n + 1) * (n + 1) + 1 << endl;
+    }
 }
