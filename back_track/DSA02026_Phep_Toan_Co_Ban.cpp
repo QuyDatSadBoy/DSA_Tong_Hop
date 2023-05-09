@@ -42,7 +42,7 @@ void Back_track(int i)
     {
         if (isCorrect())
         {
-            oke = true;
+            oke = 1;
             cout << str;
         }
         return;
