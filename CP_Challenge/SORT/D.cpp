@@ -50,30 +50,11 @@ int main()
         {
             ll ok = 0;
             ll k = min(v1.size(), v2.size());
-            if (v1.size() < v2.size())
+            if(v1.size()>v2.size())
             {
-                for (ll i = 0; i < k; i++)
-                {
-                    swap(t1[i], t2[i]);
-                }
-                vector<ll> tam;
-                for (ll i = k; i < t2.size(); i++)
-                {
-                    tam.push_back(t2[i]);
-                }
-                for (auto x : tam)
-                {
-                    t1.push_back(x);
-                }
-                t2.erase(t2.begin() + k, t2.end());
+                
             }
-            sort(all(t1), greater<ll>());
-            ll res2 = accumulate(all(t2), 0ll);
-            ll res1 = accumulate(t1.begin(), t1.begin() + k, 0ll);
-            sum = (res1 + res2) * 2;
-            for (ll i = k; i < t1.size(); k++)
-                sum += t1[k];
-            cout << sum << endl;
+            
         }
     }
 }

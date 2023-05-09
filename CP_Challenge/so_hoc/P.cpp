@@ -27,6 +27,7 @@ main()
             d[i] = i;
     f1(i, n) while (a[i] > 1)
     {
+        
         int x = d[a[i]], cnt = 0;
         while (a[i] % x == 0)
             a[i] /= x, cnt++;

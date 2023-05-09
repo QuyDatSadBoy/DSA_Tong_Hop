@@ -14,13 +14,14 @@ using namespace std;
 ll mul(ll a, ll b, ll mod)
 {
     ll ans = 0;
+    a %= mod;
     while (b)
     {
         if (b & 1)
         {
-            ans = (ans % mod) + (a % mod) % mod;
+            ans = ((ans % mod) + (a % mod)) % mod;
         }
-        a = (a % mod) + (a % mod) % mod;
+        a = ((a % mod) + (a % mod)) % mod;
         b /= 2;
     }
     return ans;
@@ -28,13 +29,14 @@ ll mul(ll a, ll b, ll mod)
 ll pow_mod(ll a, ll b, ll mod)
 {
     ll ans = 1;
+    a %= mod;
     while (b)
     {
         if (b & 1)
         {
-            ans = (ans % mod) * (a % mod) % mod;
+            ans = mul(ans, a, mod);
         }
-        a = (a % mod) * (a % mod) % mod;
+        a = mul(a, a, mod);
         b /= 2;
     }
     return ans;
@@ -65,7 +67,7 @@ bool miler(ll n)
     ll d = n - 1;
     while (d % 2 == 0)
         d /= 2;
-    for (ll i = 1; i < 10; i++)
+    for (ll i = 1; i <= 10; i++)
     {
         if (check(d, n) == 0)
             return 0;
@@ -92,7 +94,8 @@ bool nto(ll n)
 
 int main()
 {
-    faster();
-    // 2 ^ p-1 ko dong du 1 mod p thi chac chan p ko la so nguyen to
-    cout << nto(11) << endl;
+    // faster();
+    //  2 ^ p-1 ko dong du 1 mod p thi chac chan p ko la so nguyen to
+    cout << miler(13) << endl;
+    cout << pow_mod(3, 3, 13) << endl;
 }

@@ -65,7 +65,7 @@ bool Union(ll x, ll y)
 
 void Kruskal()
 {
-    int d = 0;
+    ll d = 0;
     vector<edge> Mst;
     sort(all(edges), cmp);
     for (ll i = 0; i < m; i++)
@@ -80,14 +80,10 @@ void Kruskal()
         }
     }
     if (Mst.size() != n - 1)
-        cout << "-1" << endl;
+        cout << "IMPOSSIBLE" << endl;
     else
     {
         cout << d << endl;
-        for (auto x : Mst)
-        {
-            cout << x.x << " " << x.y << " " << x.w << endl;
-        }
     }
 }
 int main()

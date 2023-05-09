@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+#define ll long long
+const ll mod = (ll)1e9 + 7;
+#define endl "\n"
+#define all(v) v.begin(), v.end()
+#define ms(a) memset(a, 0, sizeof(a))
+#define faster()                  \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
+using namespace std;
+
+vector<ll> adj[1000001];
+ll n, m, disc[1000001], low[1000001], timer = 0;
+vector<pair<ll, ll>> edge;
+
+void init_vh()
+{
+    cin >> n >> m;
+    for (ll i = 1; i <= m; i++)
+    {
+        ll x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    for (ll i = 1; i <= n; i++)
+    {
+        sort(all(adj[i]));
+    }
+}
+
+void dfs(ll u, ll par)
+{
+    low[u] = disc[u] = ++timer;
+    for (auto v : adj[u])
+    {
+        if (v == par)
+        {
+            continue;
+        }
+        if (disc[v] == 0)
+        {
+            dfs(v, u);
+            low[u] = min(low[u], low[v]);
+            if (low[v] > disc[u])
+            {
+                edge.push_back({min(u, v), max(u, v)});
+            }
+        }
+        else
+        {
+            low[u] = min(low[u], disc[v]);
+        }
+    }
+}
+
+void solve()
+{
+    for (int i = 1; i <= n; i++)
+    {
+        if (disc[i] == 0)
+        {
+            dfs(i, -1);
+        }
+    }
+    sort(all(edge));
+    cout << edge.size() << endl;
+    for (auto &x : edge)
+    {
+        ll u = x.first;
+        ll v = x.second;
+        cout << "(" << u << " " << v << ")"
+             << " ";
+    }
+    cout << endl;
+}
+int main()
+{
+    faster();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        init_vh();
+        solve();
+        for (auto &x : adj)
+            x.clear();
+        ms(low);
+        ms(disc);
+        timer = 0;
+        edge.clear();
+    }
+}

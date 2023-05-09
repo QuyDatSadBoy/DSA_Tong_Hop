@@ -11,9 +11,8 @@ const ll mod = (ll)1e9 + 7;
 using namespace std;
 
 vector<ll> adj[100001];
-ll n, m, visited[1000001] = {0}, disc[1000001], low[1000001], timer = 0;
+ll n, m, disc[1000001], low[1000001], timer = 0;
 vector<pair<ll, ll>> edge;
-
 
 bool ap[1000001];
 void init_vh()
@@ -66,11 +65,31 @@ void solve()
             dfs(i, -1);
         }
     }
+    sort(all(edge));
     cout << edge.size() << endl;
+    for (auto x : edge)
+    {
+        ll u = x.first;
+        ll v = x.second;
+        cout << "(" << u << " " << v << ")"
+             << " ";
+    }
+    cout << endl;
 }
 int main()
 {
     faster();
-    init_vh();
-    solve();
+    ll t;
+    cin >> t;
+    while (t--)
+    {
+        init_vh();
+        solve();
+        for (auto &x : adj)
+            x.clear();
+        ms(low);
+        ms(disc);
+        timer = 0;
+        edge.clear();
+    }
 }

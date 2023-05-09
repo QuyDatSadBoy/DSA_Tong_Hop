@@ -3,9 +3,9 @@ using namespace std;
 int main()
 {
     int t = 4;
-    string s;
     while (t--)
     {
+        string s;
         cin >> s;
         int cnt = 0, res = 0;
         stack<pair<char, int>> st;

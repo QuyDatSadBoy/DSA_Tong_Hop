@@ -11,14 +11,28 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll t[maxn], n, q;
+ll a[maxn], t[maxn], n, q;
+void init()
+{
+    for (ll i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        ll cnt = (i & (-i));
+        ll idex = i;
+        while (cnt--)
+        {
+            t[i] += a[idex];
+            idex--;
+        }
+    }
+}
 ll get(ll x)
 {
     int ans = 0;
     while (x)
     {
         ans += t[x];
-        x -= x & (-x);
+        x -= (x & (-x));
     }
     return ans;
 }
@@ -27,13 +41,14 @@ void update(ll x)
     while (x <= n)
     {
         t[x]++;
-        x += x & (-x);
+        x += (x & (-x));
     }
 }
 int main()
 {
     faster();
     cin >> q >> n;
+    init();
     while (q--)
     {
         ll t, x;

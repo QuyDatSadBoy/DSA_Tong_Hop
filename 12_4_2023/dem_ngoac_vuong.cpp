@@ -4,46 +4,42 @@ using namespace std;
 
 int main()
 {
-    ll t;
-    cin >> t;
-    cin.ignore();
-    while (t--)
+    string s;
+    cin >> s;
+    stack<char> st;
+    ll res = 0, cnt2 = 0;
+    for (ll i = 0; i < s.size(); i++)
     {
-        string s;
-        cin >> s;
-        stack<char> st;
-        ll res = 0, cnt2 = 0;
-        for (ll i = 0; i < s.size(); i++)
+        if (s[i] == ' ')
+            continue;
+        if (s[i] == '(' || s[i] == '[')
         {
-            if (s[i] == '(' || s[i] == '[')
+            st.push(s[i]);
+        }
+        else
+        {
+            if (s[i] == ')')
             {
-                st.push(s[i]);
+                if (!st.empty() && st.top() == '(')
+                    st.pop();
+                else
+                    cnt2 = 0;
             }
             else
             {
-                if (s[i] == ')')
+                if (s[i] == ']')
                 {
-                    if (!st.empty() && st.top() == '(')
+                    if (!st.empty() && st.top() == '[')
+                    {
                         st.pop();
+                        cnt2++;
+                    }
                     else
                         cnt2 = 0;
                 }
-                else
-                {
-                    if (s[i] == ']')
-                    {
-                        if (!st.empty() && st.top() == '[')
-                        {
-                            st.pop();
-                            cnt2++;
-                        }
-                        else
-                            cnt2 = 0;
-                    }
-                }
             }
-            res = max(res, cnt2);
         }
-        cout << res << endl;
+        res = max(res, cnt2);
     }
+    cout << res << endl;
 }

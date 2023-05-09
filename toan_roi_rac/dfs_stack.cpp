@@ -34,7 +34,7 @@ void dfs(ll s)
             if (a[top][i] && !visited[i])
             {
                 st.push(top);
-                st.push(i);
+                st.push(i);////
                 visited[i] = 1;
                 cout << i << " ";
                 break;

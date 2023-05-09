@@ -27,7 +27,7 @@ void dijkstra(ll s)
 {
     ll d[n + 1] = {0};
     for (ll i = 1; i <= n; i++)
-        d[i] = (int)1e9;
+        d[i] = (ll)1e18;
     d[s] = 0;
     priority_queue<pair<ll, ll>, vector<pair<ll, ll>>, greater<pair<ll, ll>>> qe;
     qe.push({0, s});
