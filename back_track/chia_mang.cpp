@@ -14,8 +14,7 @@ void back_track(ll sum, ll ans)
 {
     if (ans == k)
     {
-        ok = 1;
-        return;
+        ok++;
     }
     for (ll i = 0; i < n; i++)
     {

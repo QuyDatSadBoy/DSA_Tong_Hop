@@ -31,16 +31,23 @@ void back_track(ll sum, ll cnt, ll begin)
 int main()
 {
     faster();
-    cin >> n >> s;
-    for (ll i = 0; i < n; i++)
-        cin >> a[i];
-    back_track(0, 1, 0);
-    if (!ok)
+    ll t;
+    cin >> t;
+    while (t--)
     {
-        cout << -1 << endl;
-    }
-    else
-    {
-        cout << res << endl;
+        cin >> n >> s;
+        for (ll i = 0; i < n; i++)
+            cin >> a[i];
+        back_track(0, 1, 0);
+        if (!ok)
+        {
+            cout << -1 << endl;
+        }
+        else
+        {
+            cout << res << endl;
+        }
+        res = 1e9;
+        ok = 0;
     }
 }

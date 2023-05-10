@@ -14,8 +14,7 @@ void back_track(ll sum, ll ans, ll begin)
 {
     if (ans == k)
     {
-        ok = 1;
-        return;
+        ok++;
     }
     for (ll j = begin; j < n; j++)
     {
@@ -35,20 +34,26 @@ void back_track(ll sum, ll ans, ll begin)
 int main()
 {
     faster();
-    cin >> n >> k;
-    for (ll i = 0; i < n; i++)
+    ll t;
+    cin >> t;
+    while (t--)
     {
-        cin >> a[i];
-        s += a[i];
-    }
-    if (s % k != 0)
-    {
-        cout << 0 << endl;
-    }
-    else
-    {
-        s /= k;
-        back_track(0, 0, 0);
-        cout << ok << endl;
+        cin >> n >> k;
+        for (ll i = 0; i < n; i++)
+        {
+            cin >> a[i];
+            s += a[i];
+        }
+        if (s % k != 0)
+        {
+            cout << 0 << endl;
+        }
+        else
+        {
+            s /= k;
+            back_track(0, 0, 0);
+            cout << ok << endl;
+        }
+        s = 0;
     }
 }
