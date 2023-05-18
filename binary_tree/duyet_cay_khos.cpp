@@ -1,38 +1,35 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
-
-int find(int in[], int x, int n)
+int seach(int *M, int n, int x)
 {
     for (int i = 0; i < n; i++)
-    {
-        if (in[i] == x)
-        {
+        if (M[i] == x)
             return i;
-        }
-    }
-    return -1;
 }
-void posOrder(int in[], int pre[], int n)
+void Duyet(int *M, int n, int *N)
 {
-    int root = find(in, pre[0], n);
-    if (root != 0)
-    {
-        posOrder(in, pre + 1, root);
-    }
-    if (root != n - 1)
-    {
-        posOrder(in + root + 1, pre + root + 1, n - root - 1);
-    }
-    cout << pre[0] << " ";
+    int x = seach(M, n, N[0]);
+    if (x != 0)
+        Duyet(M, x, N + 1);
+    if (x != n - 1)
+        Duyet(M + x + 1, n - x - 1, N + x + 1);
+    cout << N[0] << " ";
 }
+
 int main()
 {
-    int n;
-    cin >> n;
-    int pre[n], in[n];
-    for (int i = 0; i < n; i++)
-        cin >> pre[i];
-    for (int i = 0; i < n; i++)
-        cin >> in[i];
-    posOrder(in, pre, n);
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int M[1000], N[1000];
+        int n;
+        cin >> n;
+        for (int i = 0; i < n; i++)
+            cin >> M[i];
+        for (int j = 0; j < n; j++)
+            cin >> N[j];
+        Duyet(M, n, N);
+        cout << endl;
+    }
 }

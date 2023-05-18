@@ -1,1 +1,0 @@
-while (!st.empty() && a[i] < a[st.top()])
