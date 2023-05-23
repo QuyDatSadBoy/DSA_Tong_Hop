@@ -40,7 +40,7 @@ ll solve(ll s, ll t)
                 {
                     tam[i] = (char)j;
                     ll value = stoll(tam);
-                    if (!se.count(value) && value >= 1000 && nto(value))
+                    if (nto(value) && !se.count(value) && value >= 1000)
                     {
                         qe.push({value, top.second + 1});
                         se.insert(value);

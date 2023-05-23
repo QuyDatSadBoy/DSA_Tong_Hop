@@ -1,80 +1,90 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> trai(vector<int> a)
-{
-    vector<int> res(6);
-    res[0] = a[0];
-    res[1] = a[4];
-    res[2] = a[1];
-    res[3] = a[3];
-    res[4] = a[5];
-    res[5] = a[2];
-    return res;
-}
+#define endl '\n'
+#define fi first
+#define se second
+#define pb push_back
+#define mpr make_pair
+#define all(a) a.begin(), a.end()
+#define ms(a, n) memset(a, n, sizeof(a))
+#define FOR(i, a, b) for (int i = a; i <= b; i++)
+#define RFOR(i, a, b) for (int i = b; i >= a; i--)
+#define factdatdz()             \
+    ios::sync_with_stdio(NULL); \
+    cout.tie(NULL);
 
-vector<int> phai(vector<int> a)
-{
-    vector<int> res(6);
-    res[0] = a[3];
-    res[1] = a[0];
-    res[2] = a[2];
-    res[3] = a[4];
-    res[4] = a[1];
-    res[5] = a[5];
-    return res;
-}
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef pair<ll, ll> pl;
+typedef vector<ll> vll;
+typedef vector<int> vii;
+typedef pair<int, int> pi;
+const int MOD = 1e9 + 7;
 
-bool check(vector<int> a, vector<int> b)
+vii trai(vii a)
 {
-    for (int i = 0; i < 6; i++)
+    vii b(6);
+    b[0] = a[3];
+    b[1] = a[0];
+    b[2] = a[2];
+    b[5] = a[5];
+    b[3] = a[4];
+    b[4] = a[1];
+    return b;
+}
+vii phai(vii a)
+{
+    vii b(6);
+    b[0] = a[0];
+    b[3] = a[3];
+    b[1] = a[4];
+    b[2] = a[1];
+    b[4] = a[5];
+    b[5] = a[2];
+    return b;
+}
+bool cmp(vii a, vii b)
+{
+    FOR(i, 0, 5)
     {
         if (a[i] != b[i])
             return false;
     }
     return true;
 }
-
-int bfs(vector<int> a, vector<int> b)
+int BFS(vii a, vii b)
 {
-    queue<pair<vector<int>, int>> q;
+    queue<pair<vii, int>> q;
     q.push({a, 0});
-    set<vector<int>> s;
-    s.insert(a);
-    while (!q.empty())
+    while (true)
     {
-        pair<vector<int>, int> top = q.front();
+        pair<vii, int> top = q.front();
         q.pop();
-        if (check(top.first, b))
-        {
-            return top.second;
-        }
-        vector<int> left = trai(top.first);
-        if (!s.count(left))
-        {
-            q.push({left, top.second + 1});
-            s.insert(left);
-        }
-        vector<int> right = phai(top.first);
-        if (!s.count(right))
-        {
-            q.push({right, top.second + 1});
-            s.insert(right);
-        }
-    }
-}
+        if (cmp(top.fi, b))
+            return top.se;
 
+        q.push({trai(top.fi), top.se + 1});
+        q.push({phai(top.fi), top.se + 1});
+    }
+    return -1;
+}
 int main()
 {
-    int t = 1;
+    ios::sync_with_stdio(NULL);
+    cout.tie(NULL);
+    ll t;
+    cin >> t;
     while (t--)
     {
-        vector<int> a(6), b(6);
-        for (int i = 0; i < 6; i++)
-            cin >> a[i];
-        for (int i = 0; i < 6; i++)
-            cin >> b[i];
-        cout << bfs(a, b) << endl;
+        vii a(6);
+        FOR(i, 0, 5)
+        cin >> a[i];
+        vii b(6);
+        FOR(i, 0, 5)
+        cin >> b[i];
+        cout << BFS(a, b) << endl;
     }
     return 0;
 }
