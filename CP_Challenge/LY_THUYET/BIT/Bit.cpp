@@ -34,7 +34,7 @@ int main()
     string s = b.to_string();
     cout << s << endl;
     bitset<30> c("1001");
-    cout << c << endl;
+    cout << "c=" << c << endl;
     cout << bitset<10>(x) << endl;
 
     for (ll i = 5; ~i; i--)

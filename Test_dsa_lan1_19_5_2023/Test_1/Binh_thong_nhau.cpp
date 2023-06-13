@@ -14,11 +14,10 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll parent[1000001], size[1000001], n;
-set<ll> se;
+ll parent[100001], size[100001], n;
 void init()
 {
-    for (ll i = 1; i <= 1000000; i++)
+    for (ll i = 1; i <= 100000; i++)
     {
         parent[i] = i;
         size[i] = 1;
@@ -64,7 +63,7 @@ int main()
         }
         else
         {
-            if (parent[x] == parent[y])
+            if (find(x) == find(y))
                 cout << 1 << endl;
             else
                 cout << 0 << endl;

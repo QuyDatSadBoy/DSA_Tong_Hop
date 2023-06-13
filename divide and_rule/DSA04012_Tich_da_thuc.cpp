@@ -14,12 +14,7 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-bool isgood(char c)
-{
-    if (c == '+' || c == '-' || c == '*' || c == '/')
-        return true;
-    return false;
-}
+
 int main()
 {
     faster();
@@ -27,24 +22,25 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        cin.ignore(1);
-        string s;
-        getline(cin, s);
-        vector<string> res;
-        string tam = "";
-        for (ll i = 0; i < s.size(); i++)
+        ll n, m;
+        cin >> n >> m;
+        ll a[n], b[m];
+        for (auto &x : a)
+            cin >> x;
+        for (auto &x : b)
+            cin >> x;
+        map<ll, ll> mp;
+        for (ll i = 0; i < n; i++)
         {
-            if (s[i] != ' ')
+            for (ll j = 0; j < m; j++)
             {
-                tam += s[i];
-            }
-            else
-            {
-                res.push_back(tam);
-                tam = "";
+                mp[i + j] += a[i] * b[j];
             }
         }
+        for (auto &x : mp)
+        {
+            cout << x.second << " ";
+        }
+        cout << endl;
     }
 }
