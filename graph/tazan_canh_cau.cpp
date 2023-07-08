@@ -66,13 +66,11 @@ void solve()
         }
     }
     sort(all(edge));
-    cout << edge.size() << endl;
     for (auto x : edge)
     {
         ll u = x.first;
         ll v = x.second;
-        cout << "(" << u << " " << v << ")"
-             << " ";
+        cout << u << " " << v << " ";
     }
     cout << endl;
 }

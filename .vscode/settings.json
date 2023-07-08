@@ -75,5 +75,6 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
-    "cph.general.onceMaintainerMessage": false
+    "cph.general.onceMaintainerMessage": false,
+    "C_Cpp.errorSquiggles": "disabled"
 }
