@@ -1,62 +1,70 @@
 #include <bits/stdc++.h>
 #define ll long long
-#pragma GCC optimize("Ofast")
-const ll mod = (ll)1e9 + 7;
-#define endl "\n"
-#define maxn 1000006
-#define _oo LLONG_MIN
-#define oo LLONG_MAX - 9
-#define bit(x, i) ((x >> i) & 1)
-#define all(v) v.begin(), v.end()
-#define ms(a) memset(a, 0, sizeof(a))
-#define faster()                  \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0);
 using namespace std;
-ll n, q, a[maxn], t[maxn];
+
+const int maxn = 1000005;
+
+ll n, q, a[maxn], bit[maxn], type, u, v, k;
+;
+
 void update(ll x, ll value)
 {
     while (x <= n)
     {
-        t[x] += value;
+        bit[x] += value;
         x += (x & (-x));
     }
 }
+
+void range_update(ll u, ll v, ll k)
+{
+    update(u, k);
+    update(v + 1, -k);
+}
+
 ll get(ll x)
 {
     ll ans = 0;
     while (x)
     {
-        ans += t[x];
+        ans += bit[x];
         x -= (x & (-x));
     }
     return ans;
 }
+
 void init()
 {
-    cin >> n >> q;
+    cin >> n;
     for (ll i = 1; i <= n; i++)
     {
         cin >> a[i];
         update(i, a[i]);
+        update(i + 1, -a[i]);
     }
+    cin >> q;
 }
+
 int main()
 {
-    faster();
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
     init();
     while (q--)
     {
-        ll type, x, value;
-        cin >> type >> x;
+        cin >> type;
         if (type == 1)
         {
-            cin >> value;
-            update(x, value - a[x]);
-            a[x] = value;
+            cin >> u >> v >> k;
+            range_update(u, v, k);
         }
         else
-            cout << get(x) << endl;
+        {
+            cin >> u;
+            cout << get(u) << endl;
+        }
     }
+
+    return 0;
 }

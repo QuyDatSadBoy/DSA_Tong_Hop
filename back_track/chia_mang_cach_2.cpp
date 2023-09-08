@@ -9,7 +9,7 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll n, k, s, ok = 0, ans = 0, a[1000001];
+ll n, k = 3, s = 0, ok = 0, a[16];
 void back_track(ll sum, ll ans, ll begin)
 {
     if (ans == k)
@@ -38,7 +38,7 @@ int main()
     cin >> t;
     while (t--)
     {
-        cin >> n >> k;
+        cin >> n;
         for (ll i = 0; i < n; i++)
         {
             cin >> a[i];
@@ -52,8 +52,20 @@ int main()
         {
             s /= k;
             back_track(0, 0, 0);
-            cout << ok << endl;
+            ok = ok * 3;
+            ll res = 1;
+            if (ok)
+            {
+                for (ll i = 1; i <= ok; i++)
+                {
+                    res *= i;
+                }
+                cout << res << endl;
+            }
+            else
+                cout << 0 << endl;
         }
+        ok = 0;
         s = 0;
     }
 }

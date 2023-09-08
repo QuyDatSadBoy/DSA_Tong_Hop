@@ -13,6 +13,7 @@ using namespace std;
 
 int main()
 {
+    // Đếm số mảng con liên tiếp có tổng = x có thể có phần tử âm
     faster();
     ll n, x;
     cin >> n >> x;

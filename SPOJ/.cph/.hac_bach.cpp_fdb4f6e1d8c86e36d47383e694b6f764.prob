@@ -1,0 +1,1 @@
+{"name":"Local: hac_bach","url":"c:\\Users\\datha\\Desktop\\DSA_Tong_Hop\\SPOJ\\hac_bach.cpp","tests":[{"id":1691939517941,"input":"3\n2 2\n2 3\n4 5","output":"12\n26\n312"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\Desktop\\DSA_Tong_Hop\\SPOJ\\hac_bach.cpp","group":"local","local":true}

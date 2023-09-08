@@ -13,6 +13,7 @@ using namespace std;
 int main()
 {
     faster();
+    // Đếm số mảng con liên tiếp các phần tử có tổng chia hết cho k
     ll n;
     cin >> n;
     ll a[n];

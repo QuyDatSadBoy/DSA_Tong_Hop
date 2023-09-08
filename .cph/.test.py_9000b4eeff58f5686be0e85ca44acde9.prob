@@ -1,0 +1,1 @@
+{"name":"Local: test","url":"c:\\Users\\datha\\Desktop\\DSA_Tong_Hop\\test.py","tests":[{"id":1693040068077,"input":"2\n4\n168","output":"2 2\n\n2 3\n3 1\n7 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\datha\\Desktop\\DSA_Tong_Hop\\test.py","group":"local","local":true}

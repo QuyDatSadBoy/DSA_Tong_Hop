@@ -1,36 +1,87 @@
 #include <bits/stdc++.h>
-#define ll long long
 #pragma GCC optimize("Ofast")
-const ll mod = (ll)1e9 + 7;
-#define endl "\n"
-#define maxn 1000006
-#define _oo LLONG_MIN
-#define oo LLONG_MAX - 9
-#define bit(x, i) ((x >> i) & 1)
-#define all(v) v.begin(), v.end()
-#define ms(a) memset(a, 0, sizeof(a))
-#define faster()                  \
-    ios_base::sync_with_stdio(0); \
-    cin.tie(0);                   \
-    cout.tie(0);
+#define endl '\n'
 using namespace std;
+
+using ll = long long;
+
+const int maxn = 1000001;
+ll BIT[maxn], n;
+
+void update(ll i, ll val)
+{
+    for (; i <= maxn; i += (i & -i))
+    {
+        BIT[i] += val;
+    }
+}
+
+ll query(ll i)
+{
+    ll sum = 0;
+    for (; i > 0; i -= (i & -i))
+    {
+        sum += BIT[i];
+    }
+    return sum;
+}
+
+void Convert(ll arr[], ll n)
+{
+    ll temp[n];
+    for (ll i = 0; i < n; i++)
+    {
+        temp[i] = arr[i];
+    }
+    sort(temp, temp + n);
+
+    for (ll i = 0; i < n; i++)
+    {
+        arr[i] = lower_bound(temp, temp + n, arr[i]) - temp + 1;
+    }
+}
+
+ll getCount(ll arr[], ll n)
+{
+    Convert(arr, n);
+
+    ll smaller_right[n + 1] = {0};
+    ll greater_left[n + 1] = {0};
+    for (ll i = n - 1; i >= 0; i--)
+    {
+        smaller_right[i] = query(arr[i] - 1);
+        update(arr[i], 1);
+    }
+
+    fill_n(BIT, maxn + 1, 0);
+
+    for (ll i = 0; i < n; i++)
+    {
+        greater_left[i] = i - query(arr[i]);
+        update(arr[i], 1);
+    }
+    ll ans = 0;
+    for (ll i = 0; i < n; i++)
+    {
+        ans += greater_left[i] * smaller_right[i];
+    }
+
+    return ans;
+}
 
 int main()
 {
-    faster();
-    ll n;
-    cin >> n;
-    ll a[n];
-    for (auto &x : a)
-        cin >> x;
-    vector<ll> v;
-    for (auto &x : a)
+    ll t;
+    cin >> t;
+    while (t--)
     {
-        auto idex = upper_bound(all(v), x);
-        if (idex == v.end())
-            v.push_back(x);
-        else
-            *idex = x;
+        ll n;
+        cin >> n;
+        ll arr[n];
+        for (ll i = 0; i < n; i++)
+            cin >> arr[i];
+        cout << getCount(arr, n) << endl;
+        fill_n(BIT, maxn + 1, 0);
     }
-    cout << v.size() << endl;
+    return 0;
 }
