@@ -17,6 +17,11 @@ using namespace std;
 
 int main()
 {
+    // Xâu đối xứng là xâu mà khi ta đảo ngược thứ tự của xâu thì nhận lại được xâu cũ.
+    // Xâu tốt là xâu mà mỗi ký tự của nó thuộc về ít nhất 1 xâu đối xứng có độ dài lớn hơn 1.
+    // Ví dụ: AABBAA,  AABA,.. là các xâu tốt.
+    // Giá sử cho xâu s chỉ có 2 ký tự A và B. Hãy đếm số xâu con là xâu tốt trong s
+    // ( Xâu con là hợp các phần tử liền kề nhau của xâu gốc ).
     faster();
     ll n;
     cin >> n;

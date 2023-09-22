@@ -14,7 +14,22 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll Max[maxn], a[maxn];
+ll prime[] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31}, n, ans = (ll)1e18;
+void back_track(ll i, ll k, ll x)
+{
+    if (x > n)
+        return;
+    if (x == n)
+        ans = min(ans, k);
+    for (ll j = 1;; j++)
+    {
+        if (k * prime[i] > ans)
+            break;
+        k *= prime[i];
+        back_track(i + 1, k, x * (j + 1));
+    }
+}
+
 int main()
 {
     faster();
@@ -22,26 +37,9 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
         cin >> n;
-        for (ll i = 0; i < n; i++)
-            cin >> a[i];
-        Max[n - 1] = a[n - 1];
-        for (ll i = n - 2; i >= 0; i--)
-        {
-            Max[i] = max(a[i], Max[i + 1]); // số lớn nhất từ i đến cuối mảng
-        }
-        ll i = 0, j = 0, ans = -1;
-        while (i < n && j < n)
-        {
-            if (Max[j] > a[i])
-            {
-                ans = max(ans, j - i);
-                j++;
-            }
-            else
-                i++;
-        }
+        ans = 1e18;
+        back_track(0, 1, 1);
         cout << ans << endl;
     }
 }

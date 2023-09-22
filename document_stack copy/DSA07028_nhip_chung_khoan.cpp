@@ -14,7 +14,7 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll Max[maxn], a[maxn];
+
 int main()
 {
     faster();
@@ -24,24 +24,24 @@ int main()
     {
         ll n;
         cin >> n;
+        ll a[n], c[n];
+        for (auto &x : a)
+            cin >> x;
+        stack<ll> st;
         for (ll i = 0; i < n; i++)
-            cin >> a[i];
-        Max[n - 1] = a[n - 1];
-        for (ll i = n - 2; i >= 0; i--)
         {
-            Max[i] = max(a[i], Max[i + 1]); // số lớn nhất từ i đến cuối mảng
-        }
-        ll i = 0, j = 0, ans = -1;
-        while (i < n && j < n)
-        {
-            if (Max[j] > a[i])
+            while (!st.empty() && a[i] >= a[st.top()])
             {
-                ans = max(ans, j - i);
-                j++;
+                st.pop();
             }
+            if (st.size())
+                c[i] = i - st.top();
             else
-                i++;
+                c[i] = i + 1;
+            st.push(i);
         }
-        cout << ans << endl;
+        for (ll i = 0; i < n; i++)
+            cout << c[i] << " ";
+        cout << endl;
     }
 }

@@ -9,8 +9,8 @@ void solve(pair<ll, ll> a[], ll l, ll r)
 {
     sort(a + l, a + r + 1, [](pair<ll, ll> a, pair<ll, ll> b) -> bool
          {
-		if(a.first!=b.first) return a.first<b.first;
-		return a.second>b.second; });
+	  if(a.first!=b.first) return a.first<b.first;
+	  return a.second>b.second; });
     for (ll i = l + 1; i <= r; i++)
     {
         for (ll j = l; j < i; j++)

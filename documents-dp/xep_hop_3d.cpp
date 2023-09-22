@@ -209,7 +209,7 @@ int maxStackHeight(int height[], int width[], int length[],
     sort(boxes.begin(), boxes.end(), [](Box b1, Box b2)
          {
 		// if area of box1 < area of box2
-		return (b1.length * b1.width)
+	  return (b1.length * b1.width)
 			< (b2.length * b2.width); });
 
     // Uncomment following two lines to print all rotations

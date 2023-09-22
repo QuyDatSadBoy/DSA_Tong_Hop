@@ -14,34 +14,33 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll Max[maxn], a[maxn];
+
 int main()
 {
     faster();
     ll t;
     cin >> t;
+    cin.ignore(1);
     while (t--)
     {
-        ll n;
-        cin >> n;
-        for (ll i = 0; i < n; i++)
-            cin >> a[i];
-        Max[n - 1] = a[n - 1];
-        for (ll i = n - 2; i >= 0; i--)
+        string s;
+        cin >> s;
+        stack<string> st;
+        for (ll i = s.size() - 1; i >= 0; i--)
         {
-            Max[i] = max(a[i], Max[i + 1]); // số lớn nhất từ i đến cuối mảng
-        }
-        ll i = 0, j = 0, ans = -1;
-        while (i < n && j < n)
-        {
-            if (Max[j] > a[i])
-            {
-                ans = max(ans, j - i);
-                j++;
-            }
+            if (isalpha(s[i]))
+                st.push(string(1, s[i]));
             else
-                i++;
+            {
+                string top1 = st.top();
+                st.pop();
+                string top2 = st.top();
+                st.pop();
+                string tam = "";
+                tam = tam + top1 + top2 + s[i];
+                st.push(tam);
+            }
         }
-        cout << ans << endl;
+        cout << st.top() << endl;
     }
 }

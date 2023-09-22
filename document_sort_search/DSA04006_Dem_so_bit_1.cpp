@@ -14,7 +14,24 @@ const ll mod = (ll)1e9 + 7;
     cin.tie(0);                   \
     cout.tie(0);
 using namespace std;
-ll Max[maxn], a[maxn];
+int check(ll i, ll n, ll cnt)
+{
+    if (i % 2 == 1)
+        return 1;
+    else
+    {
+        ll pos = pow(2, cnt);
+        if (pos == i)
+            return n % 2;
+        else
+        {
+            if (i < pos)
+                return check(i, n / 2, cnt - 1);
+            else
+                return check(i - pos, n / 2, cnt - 1);
+        }
+    }
+}
 int main()
 {
     faster();
@@ -22,25 +39,16 @@ int main()
     cin >> t;
     while (t--)
     {
-        ll n;
-        cin >> n;
-        for (ll i = 0; i < n; i++)
-            cin >> a[i];
-        Max[n - 1] = a[n - 1];
-        for (ll i = n - 2; i >= 0; i--)
+        ll n, l, r;
+        cin >> n >> l >> r;
+        ll dem = log2(n);
+        ll ans = 0;
+        for (ll i = l; i <= r; i++)
         {
-            Max[i] = max(a[i], Max[i + 1]); // số lớn nhất từ i đến cuối mảng
-        }
-        ll i = 0, j = 0, ans = -1;
-        while (i < n && j < n)
-        {
-            if (Max[j] > a[i])
+            if (check(i, n, dem))
             {
-                ans = max(ans, j - i);
-                j++;
+                ans++;
             }
-            else
-                i++;
         }
         cout << ans << endl;
     }
